@@ -1,0 +1,82 @@
+table{
+	font-family: "Tahoma", Verdana, Arial, Helvetica, sans-serif;
+	font-size:  90%;
+	border-collapse: collapse;
+}
+
+thead tr{
+	background-color: #D9FFD9;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+tfoot tr{
+	background-color: #FFFFFF;
+}
+
+thead th{
+	padding: 0.5em;
+	white-space: nowrap;
+}
+
+tfoot th{
+	font-size: 110%;
+	text-align: right;
+	padding-right: 0.5em;
+	letter-spacing: 1px;
+	background:  
+}
+
+tfoot td{
+	padding-left: 0.5em;
+	color: red;
+	font-size: 110%;
+	font-weight: 600;
+}
+
+tr{
+	background-color: #EAFDFF;
+}
+
+tr.odd{
+	background-color: #FFFFFF;
+}
+
+
+
+td, th{
+	border: 1px dotted #CCCCCC;
+}
+
+tbody td
+{
+	padding: 0.5em;
+}
+
+td a:link, th a:link{
+	color: black;
+	text-decoration: none;
+}
+
+td a:visited, th a:visited{
+	color: black;
+	text-decoration: none;
+}
+
+td a:hover, th a:hover{
+	color: purple;
+	text-decoration: none;
+}
+
+td:last-child a:hover{
+	color: red;
+	text-decoration: underline overline;
+}
+
+.fixedtd{
+vertical-align: top;
+position:fixed;
+height: 33%;
+width: 100%;
+overflow: auto;
+}

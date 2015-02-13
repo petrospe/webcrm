@@ -1,0 +1,9 @@
+body{font: 80% "Trebuchet MS", sans-serif; margin: 50px;}
+div.logo{float:left;}
+div.menu1{float:left; width:90%; text-align:left;}
+div.clock{float:right; text-align:right;}
+div.title{float:left; font-weight:bold; font-size:150%;}
+a.title{text-decoration:none; color:#250517;}
+div.subtitle{text-indent: 1em; float:left; font-weight:bold; color:#302217;}
+div.footer{text-align:center; line-height:120%;}
+table.lined{border-spacing:0 10px;}
