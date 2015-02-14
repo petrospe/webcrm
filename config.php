@@ -1,8 +1,8 @@
 <?php
 
 $servername='localhost';     // Your MySql Server Name or IP address here
-$dbusername='y5|x>L1Ge3[B';                // Login user id here
-$dbpassword='3gB[ecR>9W}5';                // Login password here
+$dbusername='webcrmuser';                // Login user id here
+$dbpassword='webcrmV2@';                // Login password here
 $dbname='webcrmv2';     // Your database name here
 
 connecttodb($servername,$dbname,$dbusername,$dbpassword);
