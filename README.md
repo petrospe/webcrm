@@ -23,4 +23,4 @@ WebCRM needs mysql5.1 with php5 and a web server. It does not tested with mssql 
 * Username admin password admin and another user exist with username user and password user
 * You can choose your working theme changing the jquery-ui.custom.css in css folder
 
->For more information about my wokrs visit my site  [Petros Petropoulos](http:.//petrospe.org) 
+>For more information about my wokrs visit my site  [Petros Petropoulos](http://petrospe.org) 
