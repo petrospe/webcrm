@@ -9,8 +9,13 @@ if (isset($_SESSION['user']))
 error_reporting(E_ALL);
 ini_set("display_errors",0);
 
+if (!file_exists('config.php')) {   
+header("Location: install/");                        
+}
+else {
 include 'config.php';
-  
+}
+
 if (isset($_POST['name'])) {
 
 $user_name = mysql_real_escape_string($_POST['name']);
@@ -83,7 +88,5 @@ exit();
       <input type="submit" style="margin: -20px 0 0 287px;" class="button" name="Submit" value="Login"/>  
     </fieldset>
   </form>
-  
 </body>
-
 </html>

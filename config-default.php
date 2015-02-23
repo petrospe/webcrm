@@ -1,16 +1,17 @@
 <?php
 
-$servername='localhost';     // Your MySql Server Name or IP address here
-$dbusername='y5|x>L1Ge3[B';                // Login user id here
-$dbpassword='3gB[ecR>9W}5';                // Login password here
-$dbname='webcrmv2';     // Your database name here
+$servername='mysql4.000webhost.com';     // Your MySql Server Name or IP address here
+$dbusername='a2354756_webcrmu';                // Login user id here
+$dbpassword='webcrmV2';                // Login password here
+$dbname='a2354756_webcrmv';     // Your database name here
 
 connecttodb($servername,$dbname,$dbusername,$dbpassword);
 function connecttodb($servername,$dbname,$dbuser,$dbpassword)
 {
 global $link;
 $link=mysql_connect ("$servername","$dbuser","$dbpassword");
-if(!$link){die("Could not connect to MySQL");}
+if(!$link){die("Could not connect to MySQL");
+}
 mysql_select_db("$dbname",$link) or die ("could not open db".mysql_error());
 mysql_query("SET NAMES 'utf8'");
 }
