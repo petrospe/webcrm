@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>
-Web CRM Installation
+Installation
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="../images/favicon.ico" />
@@ -31,10 +31,10 @@ input[type=checkbox] { width: 20px; margin: 0; display: inline-block; }
 </head>
 <body>
 <div>
-	<h1>Web CRM Installation</h1>
+	<h1>Installation</h1>
 </div>
 <div>
-	<h3>Welcome to Web CRM installation form.</h3>
+	<h3>Welcome to installation form.</h3>
 </div>
 <div>
 	<h3>Fill the following fields to create the database.</h3>
@@ -59,7 +59,7 @@ input[type=checkbox] { width: 20px; margin: 0; display: inline-block; }
 	<caption style="color:#800517;font-size: 18px;font-family: Georgia, serif;font-weight:600;">Database Settings</caption>
 	<tr>
 		<td><h2 style="margin-bottom:10px;text-align:right;">User Name:</h2></td>
-		<td><input type="text" name="username" placeholder="webcrmuser"/></td>
+		<td><input type="text" name="username" placeholder="dbuser"/></td>
 	</tr>
 	<tr>
 		<td><h2 style="margin-bottom:10px;text-align:right;">Password:</h2></td>
@@ -67,7 +67,7 @@ input[type=checkbox] { width: 20px; margin: 0; display: inline-block; }
 	</tr>
 	<tr>
 		<td><h2 style="margin-bottom:10px;text-align:right;">Database name:</h2></td>
-		<td><input type="text" name="database" placeholder="webcrmv2" /></td>
+		<td><input type="text" name="database" placeholder="a904abMS" /></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center"><input name="submit" type="submit" value="Create"></td>

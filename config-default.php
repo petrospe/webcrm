@@ -1,9 +1,9 @@
 <?php
 
-$servername='localhost';     // Your MySql Server Name or IP address here
-$dbusername='y5|x>L1Ge3[B';                // Login user id here
-$dbpassword='3gB[ecR>9W}5';                // Login password here
-$dbname='a2354756_webcrmv';     // Your database name here
+$servername='localhost'; // Your MySql Server Name or IP address here
+$dbusername='c384i1B28EHm'; // Login user id here
+$dbpassword='5q86EA2g297G'; // Login password here
+$dbname='a904abMS'; // Your database name here
 
 connecttodb($servername,$dbname,$dbusername,$dbpassword);
 function connecttodb($servername,$dbname,$dbuser,$dbpassword)

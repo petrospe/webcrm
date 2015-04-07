@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>
-Web CRM Installation
+Installation
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="../images/favicon.ico" />
@@ -18,7 +18,7 @@ body,a { font-family: Georgia, serif; font-size: 18px; font-weight: 600; text-al
  */
   
 // Name of the file
-$filename = 'webcrmv2.sql';
+$filename = 'a904abMS.sql';
 // MySQL host
 $mysql_host = ($_POST['servername']);
 // Root user
