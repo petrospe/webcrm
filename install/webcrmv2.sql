@@ -1936,7 +1936,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `programtitle`, `officetitle`, `officesubtitle`, `officestreet`, `officezipcode`, `officecity`, `lbltopmargin`, `lblbottommargin`, `lblleftmargin`, `lblrightmargin`, `lblheight`, `lblwidth`, `lblspace`, `lblrownumber`, `lblcolnumber`, `lbltitle`, `envelopewidth`, `envelopeheight`, `envelopepreprinted`, `officetime`, `officewhether`, `extdial`, `version`, `align`, `serialnumber`) VALUES
-(1, 'Web CRM', 'Legal Services', 'CRM', '', '', 'Athens', 1.3, 1, 0.35, 0.35, 3.39, 6.6, 0.25, 3, 8, 'Α4 Ετικέτες Αλληλογραφίας', 11.4, 22.9, 0, '<script type="text/javascript">$(function(){$("#clock3").MyDigitClock({fontSize:20,fontColor:"#736F6E",background:"#fff",fontWeight:"bold",timeFormat:''{HH}:{MM}''});});</script>', '<script type="text/javascript">$(document).ready(function () {$(''#whether'').weatherfeed([''GRXX0004'']);});</script>', NULL, '1.2.2', 1, '9136-0039-5315-0665');
+(1, 'CRM', 'Legal Services', 'CRM', '', '', 'Athens', 1.3, 1, 0.35, 0.35, 3.39, 6.6, 0.25, 3, 8, 'Α4 Ετικέτες Αλληλογραφίας', 11.4, 22.9, 0, '<script type="text/javascript">$(function(){$("#clock3").MyDigitClock({fontSize:20,fontColor:"#736F6E",background:"#fff",fontWeight:"bold",timeFormat:''{HH}:{MM}''});});</script>', '<script type="text/javascript">$(document).ready(function () {$(''#whether'').weatherfeed([''GRXX0004'']);});</script>', NULL, '1.2.2', 1, '9136-0039-5315-0665');
 
 -- --------------------------------------------------------
 
