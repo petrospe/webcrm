@@ -1,9 +1,7 @@
 <?php
 
 // Check if the script is running on Heroku (checks for the DYNO environment variable)
-if (getenv('DYNO')) {
-    // Running on Heroku, no need to load from .env file
-} else {
+if (!getenv('DYNO')) {
     // Running locally, load from .env file
     $envFilePath = __DIR__ . '/.env';
 
@@ -28,11 +26,11 @@ if (getenv('DYNO')) {
     }
 }
 
-$servername=$_ENV['SERVERNAME']; // Your MySql Server Name or IP address here
-$dbusername=$_ENV['DBUSERNAME']; // Login user id here
-$dbpassword=$_ENV['DBPASSWORD']; // Login password here
-$dbname=$_ENV['DBNAME']; // Your database name here
-$dbport=$_ENV['DBPORT'];
+$servername=getEnvVariable('SERVERNAME'); // Your MySql Server Name or IP address here
+$dbusername=getEnvVariable('DBUSERNAME'); // Login user id here
+$dbpassword=getEnvVariable('DBPASSWORD'); // Login password here
+$dbname=getEnvVariable('DBNAME'); // Your database name here
+$dbport=getEnvVariable('DBPORT');
 
 connecttodb($servername,$dbname,$dbusername,$dbpassword,$dbport);
 function connecttodb($servername, $dbname, $dbuser, $dbpassword)
@@ -48,26 +46,22 @@ function connecttodb($servername, $dbname, $dbuser, $dbpassword)
 }
 
 function mysql_query($sql){
-    //try {
-        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
-        $result = mysqli_query($link, $sql);
-        if (!$result) {
-            die("Query failed: " . mysqli_error($link));
-        }
-        return $result;
-    //} catch (Exception $e) {
-    //    echo 'Caught exception: ',  $e->getMessage(), "\n";
-    //}
+    $link = mysqli_connect(getEnvVariable('SERVERNAME'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+    $result = mysqli_query($link, $sql);
+    if (!$result) {
+        die("Query failed: " . mysqli_error($link));
+    }
+    return $result;
 }
 
 function mysql_error(){
-    $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+    $link = mysqli_connect(getEnvVariable('SERVERNAME'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
     return mysqli_error($link);
 }
 
 function mysql_real_escape_string($escapestring){
     try {
-        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        $link = mysqli_connect(getEnvVariable('SERVERNAME'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         $result = mysqli_real_escape_string($link, $escapestring);
         return $result;
     } catch (Exception $e) {
@@ -124,7 +118,7 @@ function mysql_fetch_assoc($mysqlqueryres){
 
 function mysql_close(){
     try {
-        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        $link = mysqli_connect(getEnvVariable('SERVERNAME'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         return mysqli_close($link);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -133,11 +127,19 @@ function mysql_close(){
 
 function mysql_insert_id(){
     try {
-        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        $link = mysqli_connect(getEnvVariable('SERVERNAME'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         return mysqli_insert_id($link);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
+}
+
+function getEnvVariable($envvariable){
+    $value = null;
+    if(!empty($envvariable)){
+        $value = !empty($_ENV[$envvariable])?$_ENV[$envvariable]:(!empty(getenv($envvariable))?getenv($envvariable):null);
+    }
+    return $value;
 }
 
 // Permissions
