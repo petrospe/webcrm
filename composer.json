@@ -1,0 +1,7 @@
+{
+    "name": "webcrm",
+    "description": "A web crm",
+    "require": {
+        "php": "5.6.*"
+    }
+}
