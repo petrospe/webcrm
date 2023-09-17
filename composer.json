@@ -1,9 +1,9 @@
 {
     "name": "peter/webcrm",
     "description": "A web CRM",
-    "require-dev": {
-        "php": ">=7.0.0"
-    },
     "license": "mit",
-    "require": {}
+    "require": {
+        "php": "^7.4.0"
+    },
+    "require-dev": {}
 }
