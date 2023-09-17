@@ -26,14 +26,8 @@ if (!getenv('DYNO')) {
     }
 }
 
-$servername=getEnvVariable('SERVERNAME'); // Your MySql Server Name or IP address here
-$dbusername=getEnvVariable('DBUSERNAME'); // Login user id here
-$dbpassword=getEnvVariable('DBPASSWORD'); // Login password here
-$dbname=getEnvVariable('DBNAME'); // Your database name here
-$dbport=getEnvVariable('DBPORT');
-
-connecttodb($servername,$dbname,$dbusername,$dbpassword,$dbport);
-function connecttodb($servername, $dbname, $dbuser, $dbpassword)
+connecttodb(getEnvVariable('SERVERNAME'),getEnvVariable('DBNAME'),getEnvVariable('DBUSERNAME'),getEnvVariable('DBPASSWORD'),getEnvVariable('DBPORT'));
+function connecttodb($servername, $dbname, $dbuser, $dbpassword, $dbport)
 {
     global $link;
     $link = mysqli_connect($servername, $dbuser, $dbpassword, $dbname, $dbport);
@@ -137,7 +131,7 @@ function mysql_insert_id(){
 function getEnvVariable($envvariable){
     $value = null;
     if(!empty($envvariable)){
-        $value = !empty($_ENV[$envvariable])?$_ENV[$envvariable]:(!empty(getenv($envvariable))?getenv($envvariable):null);
+        $value =  (!empty(getenv($envvariable))?getenv($envvariable):(!empty($_ENV[$envvariable])?$_ENV[$envvariable]:null));
     }
     return $value;
 }
