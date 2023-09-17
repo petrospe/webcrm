@@ -32,21 +32,117 @@ $servername=$_ENV['SERVERNAME']; // Your MySql Server Name or IP address here
 $dbusername=$_ENV['DBUSERNAME']; // Login user id here
 $dbpassword=$_ENV['DBPASSWORD']; // Login password here
 $dbname=$_ENV['DBNAME']; // Your database name here
+$dbport=$_ENV['DBPORT'];
 
-connecttodb($servername,$dbname,$dbusername,$dbpassword);
-function connecttodb($servername,$dbname,$dbuser,$dbpassword)
+connecttodb($servername,$dbname,$dbusername,$dbpassword,$dbport);
+function connecttodb($servername, $dbname, $dbuser, $dbpassword)
 {
-global $link;
-$link=mysql_connect ("$servername","$dbuser","$dbpassword");
-if(!$link){die("Could not connect to MySQL");
-}
-mysql_select_db("$dbname",$link) or die ("could not open db".mysql_error());
-mysql_query("SET NAMES 'utf8'");
+    global $link;
+    $link = mysqli_connect($servername, $dbuser, $dbpassword, $dbname, $dbport);
+    
+    if (!$link) {
+        die("Could not connect to MySQL: " . mysqli_connect_error());
+    }
+    
+    mysqli_set_charset($link, 'utf8');
 }
 
-//permissions
+function mysql_query($sql){
+    //try {
+        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        $result = mysqli_query($link, $sql);
+        if (!$result) {
+            die("Query failed: " . mysqli_error($link));
+        }
+        return $result;
+    //} catch (Exception $e) {
+    //    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    //}
+}
+
+function mysql_error(){
+    $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+    return mysqli_error($link);
+}
+
+function mysql_real_escape_string($escapestring){
+    try {
+        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        $result = mysqli_real_escape_string($link, $escapestring);
+        return $result;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_num_rows($mysqlqueryres){
+    try {
+        return $mysqlqueryres->num_rows;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_fetch_row($mysqlqueryres){
+    try {
+        $row = mysqli_fetch_row($mysqlqueryres);
+        return $row;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_fetch_array($mysqlqueryres){
+    try {
+        $rowAssoc = mysqli_fetch_array($mysqlqueryres, MYSQLI_ASSOC);
+        return $rowAssoc;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_result($res,$row=0,$col=0){ 
+    $numrows = mysqli_num_rows($res); 
+    if ($numrows && $row <= ($numrows-1) && $row >=0){
+        mysqli_data_seek($res,$row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col])){
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
+function mysql_fetch_assoc($mysqlqueryres){
+    try {
+        $rowAssoc = mysqli_fetch_assoc($mysqlqueryres);
+        return $rowAssoc;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_close(){
+    try {
+        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        return mysqli_close($link);
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+function mysql_insert_id(){
+    try {
+        $link = mysqli_connect($_ENV['SERVERNAME'], $_ENV['DBUSERNAME'], $_ENV['DBPASSWORD'], $_ENV['DBNAME'], $_ENV['DBPORT']);
+        return mysqli_insert_id($link);
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+
+// Permissions
 if (isset($_SESSION['userid'])) {
-$user_id=$_SESSION['userid'];
-$permission=mysql_query("SELECT permit FROM useraccess WHERE userid = '$user_id'") or die("SELECT Error: ".mysql_error());
+    $user_id = $_SESSION['userid'];
+    $permission = mysqli_query($link, "SELECT permit FROM useraccess WHERE userid = '$user_id'") or die("SELECT Error: " . mysqli_error($link));
 }
 ?>

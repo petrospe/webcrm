@@ -232,7 +232,7 @@ where p.isdeleted = 0 and (p.descr like '%$var1%' or p.occupation like '%$var1%'
   p.street2 like '%$var1%' or p.personextra1 like '%$var1%' or p.personextra2 like '%$var1%' or p.phone3 like '%$var1%' or p.afm like '%$var1%' or p.personextra3 like '%$var1%')
 and p.attributeid $var4";
 $result0  = mysql_query($query0) or die("Error, query 1 failed ".mysql_error());
-$row0     = mysql_fetch_array($result0, MYSQL_ASSOC);
+$row0     = mysql_fetch_array($result0, MYSQLI_ASSOC);
 $numrows0 = $row0['numrows'];
 
 print "$numrows0 records.";
@@ -296,7 +296,7 @@ echo"<th>Delete Person</th>
 
 if ($num_rows > "0")
 {
-mysql_data_seek($result, 0);
+mysqli_data_seek($result, 0);
 }
 
 while($row = mysql_fetch_array($result))
@@ -372,7 +372,7 @@ $num_rows = mysql_num_rows($result);
 $query0   = "SELECT COUNT(p.id) AS numrows FROM person p
 where p.isdeleted = 0 and p.attributeid $var4";
 $result0  = mysql_query($query0) or die("Error, query 2 failed ".mysql_error());
-$row0     = mysql_fetch_array($result0, MYSQL_ASSOC);
+$row0     = mysql_fetch_array($result0, MYSQLI_ASSOC);
 $numrows0 = $row0['numrows'];
 
 print "$numrows0 records.";
@@ -436,7 +436,7 @@ echo"<th>Delete Person</th>
 
 if ($num_rows > "0")
 {
-mysql_data_seek($result, 0);
+mysqli_data_seek($result, 0);
 }
 
 while($row = mysql_fetch_array($result))
