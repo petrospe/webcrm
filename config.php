@@ -26,7 +26,7 @@ if (!getenv('DYNO')) {
     }
 }
 
-connecttodb(getEnvVariable('DATABASE_URL'),getEnvVariable('DBNAME'),getEnvVariable('DBUSERNAME'),getEnvVariable('DBPASSWORD'),getEnvVariable('DBPORT'));
+connecttodb(getEnvVariable('DB_HOST'),getEnvVariable('DBNAME'),getEnvVariable('DBUSERNAME'),getEnvVariable('DBPASSWORD'),getEnvVariable('DBPORT'));
 function connecttodb($servername, $dbname, $dbuser, $dbpassword, $dbport)
 {
     global $link;
@@ -40,7 +40,7 @@ function connecttodb($servername, $dbname, $dbuser, $dbpassword, $dbport)
 }
 
 function mysql_query($sql){
-    $link = mysqli_connect(getEnvVariable('DATABASE_URL'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+    $link = mysqli_connect(getEnvVariable('DB_HOST'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
     $result = mysqli_query($link, $sql);
     if (!$result) {
         die("Query failed: " . mysqli_error($link));
@@ -49,13 +49,13 @@ function mysql_query($sql){
 }
 
 function mysql_error(){
-    $link = mysqli_connect(getEnvVariable('DATABASE_URL'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+    $link = mysqli_connect(getEnvVariable('DB_HOST'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
     return mysqli_error($link);
 }
 
 function mysql_real_escape_string($escapestring){
     try {
-        $link = mysqli_connect(getEnvVariable('DATABASE_URL'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+        $link = mysqli_connect(getEnvVariable('DB_HOST'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         $result = mysqli_real_escape_string($link, $escapestring);
         return $result;
     } catch (Exception $e) {
@@ -112,7 +112,7 @@ function mysql_fetch_assoc($mysqlqueryres){
 
 function mysql_close(){
     try {
-        $link = mysqli_connect(getEnvVariable('DATABASE_URL'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+        $link = mysqli_connect(getEnvVariable('DB_HOST'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         return mysqli_close($link);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -121,7 +121,7 @@ function mysql_close(){
 
 function mysql_insert_id(){
     try {
-        $link = mysqli_connect(getEnvVariable('DATABASE_URL'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
+        $link = mysqli_connect(getEnvVariable('DB_HOST'), getEnvVariable('DBUSERNAME'), getEnvVariable('DBPASSWORD'), getEnvVariable('DBNAME'), getEnvVariable('DBPORT'));
         return mysqli_insert_id($link);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
