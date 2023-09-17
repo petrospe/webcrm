@@ -1,25 +1,31 @@
 <?php
 
-$envFilePath = __DIR__ . '/.env';
-
-// Check if the .env file exists
-if (file_exists($envFilePath)) {
-    // Read the .env file and parse its contents
-    $envContents = file_get_contents($envFilePath);
-    $envVariables = preg_split('/\r\n|\r|\n/', $envContents);
-
-    foreach ($envVariables as $envVariable) {
-        // Split the line into key and value
-        list($key, $value) = explode('=', $envVariable, 2);
-
-        // Set the environment variable
-        if ($key && $value) {
-            $_ENV[$key] = $value;
-            putenv("$key=$value");
-        }
-    }
+// Check if the script is running on Heroku (checks for the DYNO environment variable)
+if (getenv('DYNO')) {
+    // Running on Heroku, no need to load from .env file
 } else {
-    die('.env file not found.');
+    // Running locally, load from .env file
+    $envFilePath = __DIR__ . '/.env';
+
+    // Check if the .env file exists
+    if (file_exists($envFilePath)) {
+        // Read the .env file and parse its contents
+        $envContents = file_get_contents($envFilePath);
+        $envVariables = preg_split('/\r\n|\r|\n/', $envContents);
+
+        foreach ($envVariables as $envVariable) {
+            // Split the line into key and value
+            list($key, $value) = explode('=', $envVariable, 2);
+
+            // Set the environment variable
+            if ($key && $value) {
+                $_ENV[$key] = $value;
+                putenv("$key=$value");
+            }
+        }
+    } else {
+        die('.env file not found.');
+    }
 }
 
 $servername=$_ENV['SERVERNAME']; // Your MySql Server Name or IP address here
